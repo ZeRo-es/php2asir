@@ -1,0 +1,16 @@
+<?php
+
+$normal=[];
+$invertido=[];
+
+// ¡Generar una canatidad aleatoria de $temp!
+for ($i=0; $i < 100; $i++) {
+   $normal[]=$i;
+   $invertido[99 - $i]=$normal[$i];
+}
+
+print_r($normal);
+echo "<br>////////////////////////////<br>";
+print_r($invertido);
+
+?>

@@ -1,0 +1,11 @@
+<?php
+$fotos = scandir("./images/");
+
+print_r($fotos);
+echo "<br>";
+
+for ($i=2; $i < count($fotos) ; $i++) {
+    echo $fotos[$i];
+    echo "<img width='100px' src=' ./images/{$fotos[$i]}'>";
+}
+?>
