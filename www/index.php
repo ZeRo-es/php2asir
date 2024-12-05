@@ -514,7 +514,41 @@
     //}
     //echo "<p> La suma es: $total";
     //-------------------FORMULARIOS--------------------
-    
+    // Función recursiva para mostrar el contenido de un directorio
+    function mostrar_directorio($directorio) {
+        // Verificamos si el directorio existe
+        if (!is_dir($directorio)) {
+            echo "El directorio no existe.";
+            return;
+        }
+
+        // Obtenemos el contenido del directorio
+        $contenido = scandir($directorio);
+
+        echo "<h2>Contenido de: $directorio</h2>";
+        echo "<ul>";
+
+        foreach ($contenido as $archivo) {
+            // Filtramos las entradas "." y ".."
+            if ($archivo != "." && $archivo != "..") {
+                // Si es un directorio, creamos un enlace para navegar
+                if (is_dir($directorio . '/' . $archivo)) {
+                    echo "<li><a href='?dir=" . urlencode($directorio . '/' . $archivo) . "'>[Carpeta] $archivo</a></li>";
+                } else {
+                    // Si es un archivo, lo mostramos como enlace
+                    echo "<li><a href='$directorio/$archivo'>$archivo</a></li>";
+                }
+            }
+        }
+
+        echo "</ul>";
+    }
+
+    // Definimos el directorio raíz, que puede ser pasado a través de la URL con el parámetro "dir"
+    $directorio_raiz = isset($_GET['dir']) ? $_GET['dir'] : ".";
+
+    // Llamamos a la función para mostrar el contenido del directorio
+    mostrar_directorio($directorio_raiz);
     
     ?>
 

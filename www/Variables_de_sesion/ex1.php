@@ -1,20 +1,16 @@
 <?php
 session_start();
 
-if(isset($_POST["numero"])){
-    $_SESSION["numero"]=0;
+if(isset($_POST["numero"]) || isset($_POST["borrar"])){
+    $_SESSION["numero"] = 0;
 }
 
 if(isset($_POST["mas"])){
-    $_SESSION["numero"]=$_SESSION["numero"]+1;
+    $_SESSION["numero"] += 1;
 }
 
 if(isset($_POST["menos"])){
-    $_SESSION["numero"]=$_SESSION["numero"]-1;
-}
-
-if(isset($_POST["borrar"])){
-    $_SESSION["numero"]=0;
+    $_SESSION["numero"] -= 1;
 }
 
 echo $_SESSION["numero"];
