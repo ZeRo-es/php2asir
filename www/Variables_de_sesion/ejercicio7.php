@@ -1,15 +1,20 @@
 <?php
 session_start();
-
+if (!isset($_SESSION["carrera"])) {
+    $_SESSION["carrera"]=[1,0,0,0,0,0,0];
+    $_SESSION["posicion"]=0;
+}
 
 
 if(isset($_POST["der"])){
     $_SESSION["carrera"][$_SESSION["posicion"]]=0;
     $_SESSION["posicion"]+=1;
+    $_SESSION["carrera"][$_SESSION["posicion"]]=1;
 }
 if(isset($_POST["izq"])){
     $_SESSION["carrera"][$_SESSION["posicion"]]=0;
     $_SESSION["posicion"]-=1;
+    $_SESSION["carrera"][$_SESSION["posicion"]]=1;
 }
 if (isset($_POST["borrar"])) {
     $_SESSION=[];
