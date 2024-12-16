@@ -1,66 +1,43 @@
 <?php
 session_start();
-if (!isset($_SESSION["casilla"])) {
-    $_SESSION["casilla"]=[0,0,0,0,0,0,0,0];
-    $_SESSION["posicion"]=0;
+if(!isset($_SESSION["top"])){
+    $_SESSION["top"]=[];
+    $_SESSION["left"]=[];
 }
-if(isset($_POST["izquierda"])){
-    if ($_SESSION["posicion"]>0) {
-        $_SESSION["casilla"][$_SESSION["posicion"]]=0;
-        $_SESSION["posicion"]-=1;
-        $_SESSION["casilla"][$_SESSION["posicion"]]=1;
-        echo"<----";
-    }else {
-        echo "No puede ir más a la izquierda";
+
+if (isset($_POST["boton"])) {  
+    if ($_POST["boton"] == "AI") { 
+        $_SESSION["top"][] = rand(0, 100);
+        $_SESSION["left"][] = rand(0, 100);
     }
 
-}
-if(isset($_POST["derecha"])){
-    if ($_SESSION["posicion"]<7) {
-        $_SESSION["casilla"][$_SESSION["posicion"]]=0;
-        $_SESSION["posicion"]+=1;
-        $_SESSION["casilla"][$_SESSION["posicion"]]=1;
-        echo "---->";
-    }else {
-        echo "No puede ir más a la derecha";
+    if ($_POST["boton"] == "ABI") {
+            $_SESSION["top"][] = rand(100, 200);
+            $_SESSION["left"][] = rand(0, 100);
     }
 
+    if ($_POST["boton"] == "AD") {
+            $_SESSION["top"][] = rand(0, 100);
+            $_SESSION["left"][] = rand(100, 200);
+    }
+
+    if ($_POST["boton"] == "ABD") {
+            $_SESSION["top"][] = rand(100, 200);
+            $_SESSION["left"][] = rand(100, 200);
+    }
+    for ($i = 0; $i < count($_SESSION["top"]); $i++) { 
+        echo "<div style='background-color:red; margin-top:50px;position:absolute;border-radius:50%;height:10px;width:10px;left:{$_SESSION['left'][$i]}px;top:{$_SESSION['top'][$i]}px'></div>";
+    }
 }
-if (isset($_POST["borrar"])) {
+if(($_POST["boton"] == "borrar")){
     $_SESSION=[];
 }
-
-
 ?>
-<style>
-table, th, td {
-  border: 1px solid;
-  padding: 5px;
-}
-</style>
-<form action="" method="post">
-<input type="submit" name="izquierda" value="izquierda">
-<input type="submit" name="derecha" value="derecha">
-<input type="submit" name="borrar" value="borrar">
-</form>
 
-<table>
-    <tr>
-        <?php
-        for ($i=0; $i <= 7; $i++) { 
-           echo "<td>$i</td>";
-        }
-        ?>
-    </tr>
-    <tr>
-        <?php
-        for ($i=0; $i < count($_SESSION["casilla"]); $i++) { 
-            if ($_SESSION["casilla"][$i] == 1) {
-                echo "<td>X</td>";
-            }else {
-                echo "<td></td>";
-            }
-        }
-        ?>
-    </tr>
-</table>
+<form action="" method="post">
+    <input type="submit" name="boton"  value="AI"></input>
+    <input type="submit" name="boton"  value="AD"></input>
+    <input type="submit" name="boton"  value="ABI"></input>
+    <input type="submit" name="boton"  value="ABD"></input>
+    <input type="submit" name="boton"  value="borrar"></input>
+</form>
