@@ -4,6 +4,7 @@ if (!isset($_SESSION["prem"])) {
     $_SESSION["prem"]=[];
     $_SESSION["tirada"]=0;
     $_SESSION["dinero"]=0;
+    
 }
 if (isset($_POST["cancelar"])) {
     for ($i=0; $i < 5; $i++) { 
@@ -14,14 +15,20 @@ if (isset($_POST["cancelar"])) {
 
 }
 
-for ($a=0; $a < 15; $a++) { 
-    $_SESSION["t$a"]=$a;
-    if (isset($_POST["t$a"])) {
-        if ($_SESSION["prem"][$a]=$_SESSION["t$a"][$a]) {
-            $_SESSION["dinero"]+=1000;
+    if (isset($_POST["botones"])) {
+        if ( $_SESSION["tirada"]<=4) {
+            for ($i=0; $i < 5; $i++) { 
+                if ($_POST["botones"]==$_SESSION["prem"][$i]) {
+                    $_SESSION["dinero"]+=1000;
+                }
+            }
+        $_SESSION["tirada"]+=1;
+        }else {
+            echo "Tiradas Maximas, por favor repetir<br>";
         }
     }
-}
+
+
 
 
 
@@ -32,20 +39,19 @@ for ($i=0; $i < 5; $i++) {
 
 echo "<br>";
 echo "<br>";
-echo "Premios acumulados:";
+echo "Premios acumulados:{$_SESSION["dinero"]}";
 echo "<br>";
 echo "<br>";
-echo "Tiradas:";
+echo "Tiradas:{$_SESSION["tirada"]}";
 echo "<br>";
 echo "<br>";
 
-print_r($_SESSION);
 ?>
 
 <form action="" method="POST">
     <?php
         for ($i=1; $i <= 15; $i++) { 
-            echo "<input type='submit' name='botones' value='t$i'>";
+            echo "<input type='submit' name='botones' value='$i'>";
         }
     ?>
     <br>
