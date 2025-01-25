@@ -1,4 +1,4 @@
-<form action="carrito.php" method="post">
+<form action="./carrito.php" method="post">
     <input type="text" name="usuario"><br>
-    <input type="submit" value="conectar">
+    <input type="submit" name="boton" value="Iniciar sesion">
 </form>
