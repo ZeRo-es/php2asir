@@ -10,7 +10,7 @@ if (isset($_POST["tomar"])) {
     $_SESSION["cartaazar"]=[];
     $i=0;
     while ($carta == $_SESSION["cartaazar"]) {
-        $_SESSION["cartaaza"][$i]=rand(1,10);
+        $_SESSION["cartaaza"][$i]=rand(1,13);
         $i++;
     }
 }
