@@ -9,7 +9,8 @@
     echo "<th>email</th>";
     echo "<th>password</th>";
     echo "</tr>";
-    $sql = "select * from login";
+    $sql = "select * from usuarios
+    ";
 
     $sentencia = $conexion -> prepare($sql);
     $sentencia -> setFetchMode(PDO::FETCH_ASSOC);
