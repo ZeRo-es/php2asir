@@ -19,6 +19,7 @@
         
         $idGenerado = $conexion->lastInsertId();      //devuelve el último campo en miTabla
         echo $idGenerado;
+        header("Location: ./index.php");
     }
 
     }
