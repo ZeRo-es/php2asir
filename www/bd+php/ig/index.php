@@ -2,27 +2,27 @@
     ob_start();
     session_start();
     include "conexion.php";
-?>
-<form action='register.php' method='post'><input type='submit' value='Crear usuario'></form>
-<form action='login.php' method='post'><input type='submit' value='Cerrar sesión'></form>
-<?php
+    echo "<h2>Bienvenido $_SESSION[nombre] <img src= './fotosperfil/$_SESSION[fotoperfil]' width='100px'></h2>";
     echo "<table border='1' solid;black;>";
     echo "<tr>";
-    echo "<th>$_SESSION[usuario]</th>";
-    echo "<th>Post</th>";
-    echo "<th>password</th>";
+    echo "<th>Mensajes</th>";
+    echo "<th>Fotos</th>";
+    echo "<th>Fecha</th>";
+    echo "<th>Usuario</th>";
+    echo "<th>Borrar</th>";
     echo "</tr>";
-    $sql = "select * from usuarios
-    ";
-
-    $sentencia = $conexion -> prepare($sql);
-    $sentencia -> setFetchMode(PDO::FETCH_ASSOC);
-    $sentencia -> execute();
-    while($fila = $sentencia -> fetch()){ //vamos recorriendo fila a fila
-   
-    echo "<tr>";
-    echo "<td>" . $fila["nombre"] . "<br/></td>";
-    echo "<td>" . $fila["email"] . "<br/></td>";
-    echo "<tr>";
-    }
+    
 ?>
+
+<form action='login.php' method='post'><input type='submit' value='Cerrar sesión'><br><br></form>
+
+<form action="./postear.php" method="post">
+<fieldset>
+  <legend>Post:</legend>
+  <input type="text" name="mensaje" placeholder="Mensaje" required><br><br>
+
+    Enviar este Fichero: <input type="file" name="fotopost" id="imagen" required></input><br><br>
+    
+    <input type="submit" name="postear" value="Postear"><br>
+    </form>
+ </fieldset>

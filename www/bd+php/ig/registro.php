@@ -27,11 +27,14 @@ ob_start();
     }
 ?>   
 <form action="" method="post">
-    <input type="user" name="user" placeholder="text" required><br>
+    <fieldset>
+    <legend>Registro:</legend>
+    <input type="text" name="user" placeholder="Username" required><br>
     <input type="password" name="password" placeholder="Contraseña" required><br>
     <input type="password" name="confirmar" placeholder="Confirme contraseña" required><br>
-    <input type="file" name="fotoperfil"placeholder="Introduzca su foto de perfil" required>Introduzca su foto de perfil</input><br>
-    <input type="submit" value="registrar">
+    <input type="file" name="fotoperfil" id="imagen" required> * Opcional</input><br>
+    <input type="submit" value="Registrar">
+    </fieldset>
 </form>
 <form action="./login.php" method="post">
     <input type="submit" value="Volver">

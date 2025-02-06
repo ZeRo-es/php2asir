@@ -18,8 +18,10 @@
             if(empty($fila["user"])){
             }else {
                 $_SESSION["nombre"]=$fila["user"];
-                $_SESSION["foto"]=$fila["fotoperfil"];
-                $_SESSION["rol"]=$fila["rol"];
+                $_SESSION["fotoperfil"]=$fila["fotoperfil"];
+                $_SESSION["rol"]=$fila["role"];
+                $_SESSION["id"]=$fila["id"];
+                $_SESSION["fecha"]=$file["fecha"];
                 header("Location: ./index.php");
             }
         }else{
@@ -28,10 +30,15 @@
 
     }
 ?>
-<form action='registro.php' method='post'><input type='submit' value='Crear usuario'></form>
-
 <form action="" method="post">
-    <input type="user" name="user" placeholder="Usuario" ><br>
-    <input type="password" name="password" placeholder="Contraseña" ><br>
-    <input type="submit" name="logear" value="logear">
-</form>
+<fieldset>
+  <legend>Login:</legend>
+  <input type="text" name="user" placeholder="Usuario" ><br><br>
+    <input type="password" name="password" placeholder="Contraseña" ><br><br>
+    <input type="submit" name="logear" value="Login"><br>
+    </form>
+    <form action='registro.php' method='post'>
+        <br><input type='submit' value='Registrar usuario'>
+    </form>
+ </fieldset>
+
