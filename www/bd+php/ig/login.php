@@ -21,7 +21,6 @@
                 $_SESSION["fotoperfil"]=$fila["fotoperfil"];
                 $_SESSION["rol"]=$fila["role"];
                 $_SESSION["id"]=$fila["id"];
-                $_SESSION["fecha"]=$file["fecha"];
                 header("Location: ./index.php");
             }
         }else{
