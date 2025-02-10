@@ -5,9 +5,13 @@ ob_start();
         $user = $_POST["user"] ;         //si NO recibe ningún valor del POST, asigna valor por defecto "Julio"
         $password = $_POST["password"] ;
         $confirmar = $_POST["confirmar"] ;
-        $fotoperfil = $_POST["fotoperfil"] ;
+        $fotoperfil = $_FILES['fotoperfil']['name'] ;
         
     if ($password == $confirmar) {
+        $dir_subida = './fotosperfil/';
+        $fichero_subido = $dir_subida . basename($_FILES['fotoperfil']['name']);
+    
+        move_uploaded_file($_FILES['fotoperfil']['tmp_name'], $fichero_subido);
 
         $sql = "INSERT INTO usuariosig(user,password,fotoperfil) VALUES (:user,:password,:fotoperfil)";
         
@@ -19,14 +23,14 @@ ob_start();
         
         $idGenerado = $conexion->lastInsertId();
         echo $idGenerado;
-        header("Location: ./login.php");
+        header("Location: ./index.php");
     }else {
         echo "Copie la misma contraseña";
     }
 
     }
 ?>   
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <fieldset>
     <legend>Registro:</legend>
     <input type="text" name="user" placeholder="Username" required><br>
