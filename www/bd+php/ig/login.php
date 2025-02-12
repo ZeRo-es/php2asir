@@ -15,7 +15,8 @@
             $sentencia->bindParam(":password", $password);
             $sentencia -> execute();
             $fila = $sentencia -> fetch();
-            if(empty($fila["user"])){
+            if(empty($fila)){
+                echo "Usuario no existe, Por favor registrarse";
             }else {
                 $_SESSION["nombre"]=$fila["user"];
                 $_SESSION["fotoperfil"]=$fila["fotoperfil"];
@@ -24,11 +25,13 @@
                 header("Location: ./index.php");
             }
         }else{
-            echo "introduce los valores";
+            echo "Introduce los valores";
         }
 
     }
+    print_r($_SESSION);
 ?>
+
 <form action="" method="post">
 <fieldset>
   <legend>Login:</legend>
@@ -40,4 +43,5 @@
         <br><input type='submit' value='Registrar usuario'>
     </form>
  </fieldset>
+ 
 
