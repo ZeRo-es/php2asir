@@ -2,13 +2,15 @@
 ob_start();
 session_start();
     include "conexion.php";
+    //si usuario y contraseña no están en post
     if (isset($_POST["user"]) && isset($_POST["password"])) {
         $user = $_POST["user"] ;         
         $password = $_POST["password"] ;
         $confirmar = $_POST["confirmar"] ;
         $fotoperfil = $_FILES['fotoperfil']['name'];
+        //si la foto de perfil está vacia, se usa esta por predeterminado
         if (empty($fotoperfil)) {
-            $fotoperfil = "gojo.webp";
+            $fotoperfil = "gojo.jpg";
         }
     //Si la contraseña es igual a confirmar
     if ($password == $confirmar) {
@@ -21,7 +23,7 @@ session_start();
             if (!empty($fila4["user"])) {
                echo "Este usuario ya existe";
             }else {
-                # code...
+            
 
             //Se sube las fotos a una carpeta del servidor
             $dir_subida = './fotosperfil/';
