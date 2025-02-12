@@ -10,7 +10,9 @@
       echo "<th>Fecha</th>";
       echo "<th>Usuario</th>";
       echo "<th>Borrar</th>";
-      echo "<th>Editar</th>";
+      if ( $_SESSION["rol"]=="ROLE_ADMIN") {
+        echo "<th>Editar</th>";
+      }
       echo "</tr>";
     $sql = "SELECT * FROM usuariosig JOIN postsig ON usuariosig.id=postsig.id_usuario";
     $sentencia = $conexion -> prepare($sql);
@@ -26,16 +28,16 @@
 
     if ( $_SESSION["rol"]=="ROLE_ADMIN") {
         echo "<td> <form action='./borrar.php' method='post'>
-        <button type='submit' name='borrar' value=$fila[id]>borrar</button>  
+        <button type='submit' name='borrar' value={$fila['id']}>borrar</button>  
         </form></td>";
         echo "<td> <form action='./editar.php' method='post'>
-        <button type='submit' name='editar' value=$fila[id]>editar</button>  
+        <button type='submit' name='editar' value={$fila['id']}>editar</button>  
         </form></td>";
         
     }else {
       if ($_SESSION["nombre"]==$fila["user"]) {
           echo "<td> <form action='./borrar.php' method='post'>
-          <button type='submit' name='borrar' value='{$fila['id']}'>borrar</button>  
+          <button type='submit' name='borrar' value={$fila['id']}>borrar</button>  
           </form></td>";
       }else {
         ;
@@ -43,7 +45,6 @@
     }
       echo "<tr>";
     }
-    print_r(value: $_SESSION);
 ?>
 <?php
 
@@ -66,10 +67,10 @@
         $sentencia->bindParam(":idValor", $id);
         $isOk = $sentencia -> execute();
         $idGenerado = $conexion->lastInsertId();
-        echo $idGenerado;
         header("Location: ./index.php");
     }
-?>   
+?>
+
 <form action='./logout.php' method='post'><input type='submit' value='Cerrar sesión'><br><br></form>
 
 <form action="" method="post" enctype="multipart/form-data">

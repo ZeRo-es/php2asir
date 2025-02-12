@@ -29,7 +29,6 @@
         }
 
     }
-    print_r($_SESSION);
 ?>
 
 <form action="" method="post">
